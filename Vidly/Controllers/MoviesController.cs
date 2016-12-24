@@ -12,10 +12,7 @@ namespace Vidly.Controllers
     {
         public ActionResult Index()
         {
-            var movies = new List<Movie>() {
-                new Movie() { Name = "Shrek!" },
-                new Movie() { Name = "Wall-e" }
-            };
+            var movies = GetMovies();
 
             return View(movies);
         }
@@ -44,6 +41,28 @@ namespace Vidly.Controllers
         public ActionResult ByReleaseYear(int year)
         {
             return Content(year + " Releases");
+        }
+
+        [Route("movies/details/{id}")]
+        public ActionResult Details(int id)
+        {
+            var movies = GetMovies();
+            var movie = movies.SingleOrDefault(c => c.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            return View(movie);
+        }
+
+        private List<Movie> GetMovies()
+        {
+            var movies = new List<Movie>() {
+                new Movie() { Id = 1, Name = "Shrek!" },
+                new Movie() { Id = 2, Name = "Wall-e" }
+            };
+
+            return movies;
         }
     }
 }
