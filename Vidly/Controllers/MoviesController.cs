@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -16,7 +17,17 @@ namespace Vidly.Controllers
                 Name = "Shrek!"
             };
 
-            return View(movie);
+            var customers = new List<Customer>() {
+                new Customer() { Name = "John Smith" },
+                new Customer() { Name = "Jane Smith" }
+            };
+
+            var viewModel = new RandomMovieViewModel() {
+                Customers = customers,
+                Movie = movie
+            };
+
+            return View(viewModel );
         }
 
         [Route("movies/released/{year:regex(\\d{4})}")]
