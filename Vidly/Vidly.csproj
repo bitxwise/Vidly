@@ -239,6 +239,14 @@
     <Compile Include="Migrations\201612250823220_FixGenreIdForMovie.Designer.cs">
       <DependentUpon>201612250823220_FixGenreIdForMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612250831363_AddDatesAndStockCountToMovie.cs" />
+    <Compile Include="Migrations\201612250831363_AddDatesAndStockCountToMovie.Designer.cs">
+      <DependentUpon>201612250831363_AddDatesAndStockCountToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612250838104_RemoveNullableDatesFromMovie.cs" />
+    <Compile Include="Migrations\201612250838104_RemoveNullableDatesFromMovie.Designer.cs">
+      <DependentUpon>201612250838104_RemoveNullableDatesFromMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -357,6 +365,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612250823220_FixGenreIdForMovie.resx">
       <DependentUpon>201612250823220_FixGenreIdForMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612250831363_AddDatesAndStockCountToMovie.resx">
+      <DependentUpon>201612250831363_AddDatesAndStockCountToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612250838104_RemoveNullableDatesFromMovie.resx">
+      <DependentUpon>201612250838104_RemoveNullableDatesFromMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
