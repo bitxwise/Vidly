@@ -231,9 +231,18 @@
     <Compile Include="Migrations\201612250812553_AddGenreToMovie.Designer.cs">
       <DependentUpon>201612250812553_AddGenreToMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612250821004_ChangeGenreToOwnModel.cs" />
+    <Compile Include="Migrations\201612250821004_ChangeGenreToOwnModel.Designer.cs">
+      <DependentUpon>201612250821004_ChangeGenreToOwnModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612250823220_FixGenreIdForMovie.cs" />
+    <Compile Include="Migrations\201612250823220_FixGenreIdForMovie.Designer.cs">
+      <DependentUpon>201612250823220_FixGenreIdForMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MembershipType.cs" />
@@ -342,6 +351,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612250812553_AddGenreToMovie.resx">
       <DependentUpon>201612250812553_AddGenreToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612250821004_ChangeGenreToOwnModel.resx">
+      <DependentUpon>201612250821004_ChangeGenreToOwnModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612250823220_FixGenreIdForMovie.resx">
+      <DependentUpon>201612250823220_FixGenreIdForMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
