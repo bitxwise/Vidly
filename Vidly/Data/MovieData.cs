@@ -15,6 +15,8 @@ namespace Vidly.Data
 
         public short GenreId { get; set; }
 
+        public GenreData Genre { get; set; }
+
         public DateTime ReleaseDate { get; set; }
 
         public DateTime AddedDate { get; set; }
