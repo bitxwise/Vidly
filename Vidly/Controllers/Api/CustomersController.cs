@@ -68,6 +68,11 @@ namespace Vidly.Controllers.Api
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            if (id != customerData.Id)
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest) {
+                    ReasonPhrase = "Cannot update customer ID."
+                });
+
             var existingCustomer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (existingCustomer == null)
