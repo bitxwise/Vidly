@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@(Model.Movie == null ? "New" : "Edit") Movie</h2>
+<h2>@(Model.Movie == null || Model.Customer.Id == 0 ? "New" : "Edit") Movie</h2>
 
 @using (Html.BeginForm("Save", "Movies"))
 {
