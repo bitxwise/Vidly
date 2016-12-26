@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Vidly.Data;
 
 namespace Vidly.Models
 {
-    public class Customer
+    public class Customer : ICustomerData
     {
         public int Id { get; set; }
 

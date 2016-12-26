@@ -7,7 +7,7 @@ using Vidly.Models;
 
 namespace Vidly.Data
 {
-    public class CustomerData
+    public class CustomerData : ICustomerData
     {
         public int Id { get; set; }
 
@@ -20,5 +20,18 @@ namespace Vidly.Data
         public bool IsSubscribedToNewsLetter { get; set; }
 
         public byte MembershipTypeId { get; set; }
+    }
+
+    public interface ICustomerData
+    {
+        int Id { get; set; }
+
+        string Name { get; set; }
+
+        DateTime? BirthDate { get; set; }
+
+        bool IsSubscribedToNewsLetter { get; set; }
+
+        byte MembershipTypeId { get; set; }
     }
 }
