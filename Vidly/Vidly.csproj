@@ -247,6 +247,14 @@
     <Compile Include="Migrations\201612250838104_RemoveNullableDatesFromMovie.Designer.cs">
       <DependentUpon>201612250838104_RemoveNullableDatesFromMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612260810460_MakeMovieNameRequired.cs" />
+    <Compile Include="Migrations\201612260810460_MakeMovieNameRequired.Designer.cs">
+      <DependentUpon>201612260810460_MakeMovieNameRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612260812103_MakeMovieGenreRequired.cs" />
+    <Compile Include="Migrations\201612260812103_MakeMovieGenreRequired.Designer.cs">
+      <DependentUpon>201612260812103_MakeMovieGenreRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -375,6 +383,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612250838104_RemoveNullableDatesFromMovie.resx">
       <DependentUpon>201612250838104_RemoveNullableDatesFromMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612260810460_MakeMovieNameRequired.resx">
+      <DependentUpon>201612260810460_MakeMovieNameRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612260812103_MakeMovieGenreRequired.resx">
+      <DependentUpon>201612260812103_MakeMovieGenreRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
