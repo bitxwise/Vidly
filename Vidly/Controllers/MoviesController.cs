@@ -57,17 +57,6 @@ namespace Vidly.Controllers
             return Content(year + " Releases");
         }
 
-        [Route("movies/details/{id}")]
-        public ActionResult Details(int id)
-        {
-            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
-
-            if (movie == null)
-                return HttpNotFound();
-
-            return View(movie);
-        }
-
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
