@@ -1,8 +1,10 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Vidly.Data;
 
 namespace Vidly.Models
 {
@@ -10,8 +12,14 @@ namespace Vidly.Models
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var customer = (Customer)validationContext.ObjectInstance;
+            var customer = validationContext.ObjectInstance as Customer;
 
+            // TODO: Find a better way...this is gross
+            if (customer == null)
+            {
+                var customerData = validationContext.ObjectInstance as CustomerData;
+                customer = Mapper.Map(customerData, customer);
+            }
             if (customer.MembershipTypeId == MembershipType.Unknown || customer.MembershipTypeId == MembershipType.PayAsYouGo)
                 return ValidationResult.Success;
 
