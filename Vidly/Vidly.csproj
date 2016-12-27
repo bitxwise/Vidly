@@ -283,6 +283,10 @@
     <Compile Include="Migrations\201612270454363_SeedUsersAndManageMoviesRole.Designer.cs">
       <DependentUpon>201612270454363_SeedUsersAndManageMoviesRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612270515268_AddDriverLicenseToApplicationUser.cs" />
+    <Compile Include="Migrations\201612270515268_AddDriverLicenseToApplicationUser.Designer.cs">
+      <DependentUpon>201612270515268_AddDriverLicenseToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -598,6 +602,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612270454363_SeedUsersAndManageMoviesRole.resx">
       <DependentUpon>201612270454363_SeedUsersAndManageMoviesRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612270515268_AddDriverLicenseToApplicationUser.resx">
+      <DependentUpon>201612270515268_AddDriverLicenseToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
