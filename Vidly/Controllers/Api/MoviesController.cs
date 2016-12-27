@@ -52,6 +52,7 @@ namespace Vidly.Controllers.Api
 
         // POST /api/movies
         [HttpPost]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateMovie(MovieData movieData)
         {
             if (!ModelState.IsValid)
@@ -69,6 +70,7 @@ namespace Vidly.Controllers.Api
 
         // PUT /api/movies/{id}
         [HttpPut]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public void UpdateMovie(int id, MovieData movieData)
         {
             if (!ModelState.IsValid)
@@ -86,6 +88,20 @@ namespace Vidly.Controllers.Api
 
             Mapper.Map(movieData, existingmovie);
 
+            _context.SaveChanges();
+        }
+
+        // DELETE /api/movies/{id}
+        [HttpDelete]
+        [Authorize(Roles = RoleName.CanManageMovies)]
+        public void DeleteMovie(int id)
+        {
+            var existingMovie = _context.Movies.SingleOrDefault(m => m.Id == id);
+
+            if (existingMovie == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            _context.Movies.Remove(existingMovie);
             _context.SaveChanges();
         }
     }
