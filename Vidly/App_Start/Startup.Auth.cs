@@ -54,9 +54,14 @@ namespace Vidly
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            // Avoid against putting sensitive data information in code
+            string facebookAppId = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER", "facebook-app-id", null).ToString();
+            string facebookAppSecret = Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER", "facebook-app-secret", null).ToString();
+
+            app.UseFacebookAuthentication(
+               appId: facebookAppId,
+               appSecret: facebookAppSecret
+            );
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
