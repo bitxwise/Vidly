@@ -13,6 +13,11 @@ namespace Vidly.Models
         [StringLength(255)]
         [Display(Name = "Driver License")]
         public string DriverLicense { get; set; }
+
+        [Display(Name = "Phone Number")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
+        public string PhoneNumber { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -89,6 +94,12 @@ namespace Vidly.Models
         [StringLength(255)]
         [Display(Name = "Driver License")]
         public string DriverLicense { get; set; }
+
+
+        [Display(Name = "Phone Number")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Entered phone format is not valid.")]
+        public string PhoneNumber { get; set; }
     }
 
     public class ResetPasswordViewModel
