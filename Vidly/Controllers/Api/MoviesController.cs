@@ -27,13 +27,21 @@ namespace Vidly.Controllers.Api
         }
 
         // GET /api/movies
-        public IEnumerable<MovieData> GetMovies(string query = null)
+        public IEnumerable<MovieData> GetMovies()
         {
             var movieQuery = _context.Movies
                 .Include(m => m.Genre);
 
-            if (!string.IsNullOrWhiteSpace(query))
-                movieQuery = movieQuery.Where(m => m.Name.Contains(query));
+            var queries = Request.GetQueryNameValuePairs();
+            var query = queries.FirstOrDefault(q => q.Key.Equals(QueryKeys.Query));
+            var availablyOnly = queries.FirstOrDefault(q => q.Key.Equals(QueryKeys.AvailableOnly));
+
+            if (!string.IsNullOrWhiteSpace(query.Value))
+                movieQuery = movieQuery.Where(m => m.Name.Contains(query.Value));
+
+            // optimistically assume that the query value is internally provided and parseable
+            if (!string.IsNullOrWhiteSpace(availablyOnly.Value) && bool.Parse(availablyOnly.Value))
+                movieQuery = movieQuery.Where(m => m.NumberAvailable > 0);
 
             var movies = movieQuery
                 .ToList()
@@ -110,6 +118,12 @@ namespace Vidly.Controllers.Api
 
             _context.Movies.Remove(existingMovie);
             _context.SaveChanges();
+        }
+
+        public static class QueryKeys
+        {
+            public static readonly string Query = "query";
+            public static readonly string AvailableOnly = "available";
         }
     }
 }

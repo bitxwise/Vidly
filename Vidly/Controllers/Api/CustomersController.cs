@@ -27,13 +27,16 @@ namespace Vidly.Controllers.Api
         }
 
         // GET /api/customers
-        public IEnumerable<CustomerData> GetCustomers(string query = null)
+        public IEnumerable<CustomerData> GetCustomers()
         {
             var customerQuery = _context.Customers
                 .Include(c => c.MembershipType);
 
-            if (!string.IsNullOrWhiteSpace(query))
-                customerQuery = customerQuery.Where(c => c.Name.Contains(query));
+            var queries = Request.GetQueryNameValuePairs();
+            var query = queries.FirstOrDefault(q => q.Key.Equals(QueryKeys.Query));
+            
+            if (!string.IsNullOrWhiteSpace(query.Value))
+                customerQuery = customerQuery.Where(c => c.Name.Contains(query.Value));
 
             var customers = customerQuery
                 .ToList()
@@ -107,6 +110,12 @@ namespace Vidly.Controllers.Api
 
             _context.Customers.Remove(existingCustomer);
             _context.SaveChanges();
+        }
+
+        public static class QueryKeys
+        {
+            public static readonly string Query = "query";
+            public static readonly string AvailableOnly = "available";
         }
     }
 }

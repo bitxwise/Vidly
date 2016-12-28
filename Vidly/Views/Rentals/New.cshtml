@@ -55,7 +55,7 @@
             var movies = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
-                prefetch: '/api/movies'
+                prefetch: '/api/movies?available=true'
             });
 
             $('#movie').typeahead({
