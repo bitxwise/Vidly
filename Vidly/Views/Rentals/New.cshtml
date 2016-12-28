@@ -95,6 +95,8 @@
                     })
                     .done(function () {
                         toastr.success("Rentals successful.");
+                        $("#customer").typeahead("val", "");
+                        $("#movie").typeahead("val", "");
                     })
                     .fail(function (jqXHR) {
                         toastr.error("Failed to complete rental!<br /><br />" + jqXHR.responseJSON.message);
