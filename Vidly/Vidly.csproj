@@ -235,6 +235,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
+    <Compile Include="Controllers\Api\RentalsController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="Data\GenreData.cs" />
     <Compile Include="Data\MembershipTypeData.cs" />
     <Compile Include="Data\MovieData.cs" />
+    <Compile Include="Data\NewRentalData..cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -308,6 +310,10 @@
     <Compile Include="Migrations\201612270515268_AddDriverLicenseToApplicationUser.Designer.cs">
       <DependentUpon>201612270515268_AddDriverLicenseToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612272356492_AddRentals.cs" />
+    <Compile Include="Migrations\201612272356492_AddRentals.Designer.cs">
+      <DependentUpon>201612272356492_AddRentals.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -317,6 +323,7 @@
     <Compile Include="Models\MemberAgeConstraint.cs" />
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -572,6 +579,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Rentals\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -626,6 +634,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612270515268_AddDriverLicenseToApplicationUser.resx">
       <DependentUpon>201612270515268_AddDriverLicenseToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612272356492_AddRentals.resx">
+      <DependentUpon>201612272356492_AddRentals.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
