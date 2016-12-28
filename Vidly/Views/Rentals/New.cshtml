@@ -39,7 +39,7 @@
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
-                prefetch: '/api/customers'                
+                prefetch: '/api/customers'
             });
 
             $('#customer').typeahead({
