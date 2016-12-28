@@ -44,11 +44,10 @@ namespace Vidly.Controllers.Api
             // TODO: Create rentals without first retrieving customer and movie data from database
             //          Ssupplying IDs only results in validation errors for Customer and Movie for required fields
             var customer = _context.Customers.Single(c => c.Id == newRentalData.CustomerId);
+            var movies = _context.Movies.Where(m => newRentalData.MovieIds.Contains(m.Id));
 
-            foreach(var movieId in newRentalData.MovieIds)
+            foreach(var movie in movies)
             {
-                var movie = _context.Movies.Single(m => m.Id == movieId);
-
                 var rental = new Rental() {
                     Customer = customer,
                     Movie = movie,
