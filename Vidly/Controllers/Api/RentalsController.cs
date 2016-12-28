@@ -38,9 +38,6 @@ namespace Vidly.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateRental(NewRentalData newRentalData)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
-
             // TODO: Create rentals without first retrieving customer and movie data from database
             //          Ssupplying IDs only results in validation errors for Customer and Movie for required fields
             var customer = _context.Customers.Single(c => c.Id == newRentalData.CustomerId);
