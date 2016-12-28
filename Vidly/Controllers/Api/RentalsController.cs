@@ -38,13 +38,19 @@ namespace Vidly.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateRental(NewRentalData newRentalData)
         {
-            // TODO: Create rentals without first retrieving customer and movie data from database
-            //          Ssupplying IDs only results in validation errors for Customer and Movie for required fields
+            // Optimistically assume data will exist for internal API
             var customer = _context.Customers.Single(c => c.Id == newRentalData.CustomerId);
-            var movies = _context.Movies.Where(m => newRentalData.MovieIds.Contains(m.Id));
+            var movies = _context.Movies.Where(m => newRentalData.MovieIds.Contains(m.Id)).ToList();
+
+            // Edge Case Excluded: Customer rents multiple copies of the same movie is not considered here
 
             foreach(var movie in movies)
             {
+                if (movie.NumberAvailable == 0)
+                    return BadRequest(string.Format("There are no copies of [{0}] available for rent.", movie.Name));
+
+                movie.NumberAvailable--;
+
                 var rental = new Rental() {
                     Customer = customer,
                     Movie = movie,
@@ -55,7 +61,7 @@ namespace Vidly.Controllers.Api
 
             _context.SaveChanges();
 
-            return Created(Request.RequestUri, newRentalData);
+            return Ok();
         }
     }
 }
