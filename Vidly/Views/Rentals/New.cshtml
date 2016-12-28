@@ -86,7 +86,7 @@
                 return vm.movieIds.length > 0;
             }, "Please select at least 1 movie to rent.");
 
-            $("#newRental").validate({
+            var validator = $("#newRental").validate({
                 submitHandler: function () {
                     $.ajax({
                         url: "/api/rentals",
@@ -97,6 +97,10 @@
                         toastr.success("Rentals successful.");
                         $("#customer").typeahead("val", "");
                         $("#movie").typeahead("val", "");
+                        $("#movies").empty();
+
+                        vm = { movieIds: [] };
+                        validator.resetForm();
                     })
                     .fail(function (jqXHR) {
                         toastr.error("Failed to complete rental!<br /><br />" + jqXHR.responseJSON.message);
