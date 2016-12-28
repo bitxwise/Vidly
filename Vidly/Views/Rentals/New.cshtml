@@ -5,7 +5,7 @@
 
 <h2>New Rental</h2>
 
-<form>
+<form id="newRental">
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
@@ -42,7 +42,7 @@
                 prefetch: '/api/customers'
             });
 
-            $('#customer').typeahead({
+            $("#customer").typeahead({
                 highlight: true
             }, {
                 name: 'customers',
@@ -58,16 +58,32 @@
                 prefetch: '/api/movies?available=true'
             });
 
-            $('#movie').typeahead({
+            $("#movie").typeahead({
                 highlight: true
             }, {
                 name: 'movies',
                 display: 'name',
                 source: movies
             }).on("typeahead:select", function (e, movie) {
-                $('#movies').append("<li class='list-group-item'>" + movie.name + "</li>");
+                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
                 $("#movie").typeahead("val", "");
-                vm.movies.push(movie.id);
+                vm.movieIds.push(movie.id);
+            });
+
+            $("#newRental").submit(function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "/api/rentals",
+                    method: "post",
+                    data: vm
+                })
+                .done(function () {
+                    toastr.success("Rentals successful");
+                })
+                .fail(function () {
+                    toastr.error("Oops! Something broke!");
+                })
             });
         });
     </script>
