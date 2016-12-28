@@ -9,13 +9,13 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" type="text" data-rule-validCustomer="true" required class="form-control typeahead" />
+            <input id="customer" name="customer" type="text" data-rule-validCustomer="true" required class="form-control typeahead" />
         </div>
     </div>
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" type="text" class="form-control" />
+            <input id="movie" name="movie" type="text" data-rule-atLeastOneMovie class="form-control" />
         </div>
     </div>
 
@@ -44,6 +44,9 @@
                 prefetch: '/api/customers'
             });
 
+            customers.clearPrefetchCache();
+            customers.initialize();
+
             $("#customer").typeahead({
                 highlight: true
             }, {
@@ -57,8 +60,11 @@
             var movies = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
-                prefetch: '/api/movies?available=true'
+                prefetch: '/api/movies?available=true'                
             });
+
+            movies.clearPrefetchCache();
+            movies.initialize();
 
             $("#movie").typeahead({
                 highlight: true
@@ -76,21 +82,25 @@
                 return vm.customerId && vm.customerId !== 0;
             }, "Please select a valid customer.");
 
-            $("#newRental").validate({
-                submitHandler: function (e) {
-                    e.preventDefault();
+            $.validator.addMethod("atLeastOneMovie", function () {
+                return vm.movieIds.length > 0;
+            }, "Please select at least 1 movie to rent.");
 
+            $("#newRental").validate({
+                submitHandler: function () {
                     $.ajax({
                         url: "/api/rentals",
                         method: "post",
                         data: vm
                     })
                     .done(function () {
-                        toastr.success("Rentals successful");
+                        toastr.success("Rentals successful.");
                     })
-                    .fail(function () {
-                        toastr.error("Oops! Something broke!");
-                    })
+                    .fail(function (jqXHR) {
+                        toastr.error("Failed to complete rental!<br /><br />" + jqXHR.responseJSON.message);
+                    });
+
+                    return false;
                 }
             });
         });
