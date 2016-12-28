@@ -9,13 +9,13 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" type="text" value="" class="form-control typeahead" />
+            <input id="customer" type="text" data-rule-validCustomer="true" required class="form-control typeahead" />
         </div>
     </div>
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" type="text" value="" class="form-control" />
+            <input id="movie" type="text" class="form-control" />
         </div>
     </div>
 
@@ -30,6 +30,8 @@
 
 @section Scripts
 {
+    @Scripts.Render("~/bundles/jqueryval");
+
     <script>
         $(document).ready(function () {
             var vm = {
@@ -70,20 +72,26 @@
                 vm.movieIds.push(movie.id);
             });
 
-            $("#newRental").submit(function (e) {
-                e.preventDefault();
+            $.validator.addMethod("validCustomer", function () {
+                return vm.customerId && vm.customerId !== 0;
+            }, "Please select a valid customer.");
 
-                $.ajax({
-                    url: "/api/rentals",
-                    method: "post",
-                    data: vm
-                })
-                .done(function () {
-                    toastr.success("Rentals successful");
-                })
-                .fail(function () {
-                    toastr.error("Oops! Something broke!");
-                })
+            $("#newRental").validate({
+                submitHandler: function (e) {
+                    e.preventDefault();
+
+                    $.ajax({
+                        url: "/api/rentals",
+                        method: "post",
+                        data: vm
+                    })
+                    .done(function () {
+                        toastr.success("Rentals successful");
+                    })
+                    .fail(function () {
+                        toastr.error("Oops! Something broke!");
+                    })
+                }
             });
         });
     </script>
